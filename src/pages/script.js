@@ -5,18 +5,19 @@ import { GiAlarmClock } from 'react-icons/gi';
 import {SiInstagram, SiReddit, SiTiktok} from 'react-icons/si';
 import {GrFacebook} from 'react-icons/gr';
 import {FaTwitter} from 'react-icons/fa';
+import Image from '../components/Image/image'
+import logo from './nocomputers.jpg';
+
 
 
 function Home() {
     const [timeGoal, setTimeGoal] = useState();
+    const [currentTime, setCurrentTime] = useState()
 
 
     function openInsta() {
         let insta = window.open("http://www.instagram.com")
-        // myFunction()
-        // updateTime()
-        // console.log(startingMinutes)
-        // if (startingMinutes == 0) {
+        // if (annoying == 0) {
         //     insta.close()
         // }
     }
@@ -37,45 +38,58 @@ function Home() {
         let tiktok = window.open("http://www.tiktok.com")
     }
 
-    let startingMinutes = 10;
+    let startingMinutes = .5;
     let time = startingMinutes * 60;
+    let hr = time / 60;
 
     const countdownEl = document.getElementById('countdown')
-    let annoying = "10:00"
-    setInterval(myFunc, 1000);
+   let annoying
+    let y = setInterval(myFunc, 1000);
 
     function myFunc() {
+        let hours = Math.floor(hr / 60)
         let minutes = Math.floor(time / 60)
         let seconds = time % 60;
-        annoying = minutes + ":" + seconds
+        annoying = hours + ":" + minutes + ":" + seconds
         // if (startingMinutes > 0) {
         time--
         // }
+        // setCurrentTime(annoying)
         console.log(annoying)
     }
+// stop()
+//     function stop (){
+//         if (annoying<="0:0:0"){
+//             clearInterval(y)
+//              }
+//     }
 
 
 
     //  myFunc()
 
 
-    console.log(timeGoal)
+    // console.log(timeGoal)
 
 
     return (
         <div>
+            <style>{'body { background-color: black; }'}</style>
             <div className="row">
-                <div className="col-lg-9">
+                <div className="col-sm-3">
+                <img alt="comp" className="laptopimg" src={logo} />
+                </div>
+                <div className="col-lg-6">
                     <h1 className="ebgaramond"> Social Media Tracker </h1>
-                    <label className="prompt" htmlFor="type">How long will you spend on social media? </label>
+                    <label className="prompt" htmlFor="type" style={{color: "white"}}>How long will you spend on social media? </label>
                     <select id="type" className="form-control" value={timeGoal}
                         onChange={(event) =>
                             setTimeGoal(event.target.value)
                         }>
                         <option name="30" value='0'>Select</option>
-                        <option name="30" value='30'>30 minutes</option>
-                        <option name="60" value='60' >1 hour</option>
-                        <option name="120" value='120'>2 hours</option>
+                        <option name="30" value="0:30:0">30 minutes</option>
+                        <option name="60" value="1:0:0">1 hour</option>
+                        <option name="120" value="2:0:0">2 hours</option>
                     </select>
 
 
@@ -92,8 +106,8 @@ function Home() {
                 <div className="col-sm-3 clock mt-1">
                     <GiAlarmClock />
                     <div className="row">
-                        <p className='timecaption'>Time: {timeGoal}</p>
-                        
+                        <p className='timecaption'>Time:  {timeGoal? timeGoal : "0:0:0"}</p>
+                        <p><button className="btn timerbtn btn-primary">Start timer</button></p>
                         </div>
                         <div className="row">
                         
@@ -108,7 +122,7 @@ function Home() {
         </a> */}
 
             {/* <a href="https://www.instagram.com" target="_blank"><button>Instagram</button></a> */}
-            <p id="countdown">just to see if working: {annoying}</p>
+            <p id="countdown" style={{color: "white"}}>just to see if working: {currentTime}</p>
         </div>
     )
 
