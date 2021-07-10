@@ -1,7 +1,72 @@
 #type {
- margin-left: 490px; 
-    
+ margin-left: 495px; 
+    margin-bottom: 15px;
 
     width: 300px;
     align-content: center;
+}
+
+.timerbtn {
+    max-width: 150px !important;
+    margin-left: 575px;
+   
+}
+
+h1{
+    margin-top: 30px !important;
+    font-size: 60px !important;
+    color: rgb(37, 24, 212);
+    text-shadow: 2px 2px 2px rgb(114, 112, 112);
+    margin-left: 350px;
+}
+
+.prompt{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 350px;
+}
+
+.clock {
+    font-size: 75px;
+    color: rgb(34, 23, 192) !important;
+    
+}
+
+.timecaption{
+    font-size: 30px;
+    color: black !important; 
+    margin-left: -30px;
+}
+
+.instagram {
+    color: rgb(255, 30, 169) !important;
+margin-left: 350px;
+}
+
+/* .link {
+    margin-top: 20px;
+} */
+
+.fb {
+    margin-left: 10px;
+}
+
+.twitter {
+    color: rgb(0, 195, 255);
+    margin-left: 10px;
+}
+
+.reddit{
+    color: red;
+    margin-left: 5px;
+}
+
+.twitter {
+
+    margin-left: 10px;
+}
+
+.tiktok{
+    color: black;
+    margin-left: 5px;
 }
