@@ -12,14 +12,17 @@ import logo from './nocomputers.jpg';
 
 function Home() {
     const [timeGoal, setTimeGoal] = useState();
-    const [currentTime, setCurrentTime] = useState()
+    const [currentTime, setCurrentTime] = useState("0:0:0")
 
-
+    let insta = "http://www.instagram.com"
+   
     function openInsta() {
-        let insta = window.open("http://www.instagram.com")
-        // if (annoying == 0) {
-        //     insta.close()
-        // }
+        window.open(insta)
+        
+    }
+
+    function closeInsta(){
+        let byeInsta = window.close("http://www.instagram.com")
     }
 
     function openFb(){
@@ -38,41 +41,50 @@ function Home() {
         let tiktok = window.open("http://www.tiktok.com")
     }
 
-    let startingMinutes = .05;
-    let time = startingMinutes * 60;
-    let hr = time / 60;
+ 
 
-    const countdownEl = document.getElementById('countdown')
-   let annoying
-    let y = setInterval(myFunc, 1000);
+    // const countdownEl = document.getElementById('countdown')
+   
+    // let y = setInterval(myFunc, 1000);
+    // let annoying
+     let startingMinutes = .5;
+     let time = startingMinutes * 60;
+     let hr = time / 60;
 
-    function myFunc() {
-        let hours = Math.floor(hr / 60)
-        let minutes = Math.floor(time / 60)
-        let seconds = time % 60;
-        annoying = hours + ":" + minutes + ":" + seconds
-        // if (startingMinutes > 0) {
-        time--
-        // }
-        // setCurrentTime(annoying)
-        if (annoying == "0:0:0"){
-            clearInterval(y)
-        }
-         console.log(annoying)
+    // function myFunc() {
+    //     let hours = Math.floor(hr / 60)
+    //     let minutes = Math.floor(time / 60)
+    //     let seconds = time % 60;
+    //     annoying = hours + ":" + minutes + ":" + seconds
+    //      time--
+     
+    //     if (annoying == "0:0:0"){
+    //         clearInterval(y)
+    //     }  
+    // }
+
+ 
+    const [timer, setTimer] = React.useState("");
+  const [timerOn, setTimerOn] = React.useState(false);
+
+  React.useEffect(() => {
+    let interval = null;
+
+    if (timerOn) {
+
+      interval = setInterval(() => {
+    let hours = Math.floor(hr / 60)
+    let minutes = Math.floor(time / 60)
+    let seconds = time % 60;
+        setTimer(() => hours + ":" + minutes + ":" + seconds)
+        time --;
+      }, 1000);
+    } else if (!timerOn) {
+      clearInterval(interval);
     }
-// stop()
-//     function stop (){
-//         if (annoying=="0:0:0"){
-//             clearInterval(y)
-//              }
-//     }
 
-
-
-    //  myFunc()
-
-
-    // console.log(timeGoal)
+    return () => clearInterval(interval);
+  }, [timerOn]);
 
 
     return (
@@ -104,7 +116,7 @@ function Home() {
                            <a className="twitter link" onClick={openTwitter}><FaTwitter style={{ height: 43, width: 35}}/></a>
                            <a className="reddit link" onClick={openReddit}><SiReddit style={{ height: 43, width: 35}}/></a>
                            <a className="tiktok link" onClick={openTikTok}><SiTiktok style={{ height: 43, width: 35}}/></a>
-                    
+                           
                 </div>
                 <div className="col-sm-3 clock mt-1">
                     <GiAlarmClock />
@@ -125,7 +137,10 @@ function Home() {
         </a> */}
 
             {/* <a href="https://www.instagram.com" target="_blank"><button>Instagram</button></a> */}
-            <p id="countdown" style={{color: "white"}}>just to see if working: {currentTime}</p>
+            {!timerOn && (
+          <button onClick={() => setTimerOn(true)}>Start</button>
+        )}
+            <p id="countdown" style={{color: "white"}}>just to see if working:{timer}</p>
         </div>
     )
 
