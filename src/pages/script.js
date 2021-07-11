@@ -38,7 +38,7 @@ function Home() {
         let tiktok = window.open("http://www.tiktok.com")
     }
 
-    let startingMinutes = .5;
+    let startingMinutes = .05;
     let time = startingMinutes * 60;
     let hr = time / 60;
 
@@ -55,11 +55,14 @@ function Home() {
         time--
         // }
         // setCurrentTime(annoying)
-        console.log(annoying)
+        if (annoying == "0:0:0"){
+            clearInterval(y)
+        }
+         console.log(annoying)
     }
 // stop()
 //     function stop (){
-//         if (annoying<="0:0:0"){
+//         if (annoying=="0:0:0"){
 //             clearInterval(y)
 //              }
 //     }
