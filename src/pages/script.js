@@ -85,13 +85,20 @@ function Home() {
         hours = 1
         minutes = 0
       
+    } else if (minutes <= 30) {
+        hours = 0;
+
+    } else if (minutes >30 && minutes < 60){
+            hours = 0;
+            minutes = 59;
     } else if (minutes == 120){
         hours = 2;
         minutes = 0
        
-    } else (
-        hours = 0
-    )
+    } else if (minutes > 60 && minutes < 120){
+        hours = 1;
+        minutes = 59
+    }
         // Math.floor(time / 60)
     let seconds = time % 60;
         setTimer((prevTime) => hours + ":" + minutes + ":" + seconds)
@@ -122,7 +129,7 @@ function Home() {
                         <option name="30" value='0'>Select</option>
                         <option name="30" value="30">30 minutes</option>
                         <option name="60" value="60">1 hour</option>
-                        {/* <option name="120" value="60">2 hours</option> */}
+                        <option name="120" value="120">2 hours</option>
                     </select>
 
 
