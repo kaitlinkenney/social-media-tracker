@@ -13,6 +13,8 @@ import logo from './nocomputers.jpg';
 function Home() {
     const [timeGoal, setTimeGoal] = useState();
     const [currentTime, setCurrentTime] = useState("0:0:0")
+    const [timer, setTimer] = React.useState("");
+    const [timerOn, setTimerOn] = React.useState(false);
 
     let insta = "http://www.instagram.com"
    
@@ -47,9 +49,7 @@ function Home() {
    
     // let y = setInterval(myFunc, 1000);
     // let annoying
-     let startingMinutes = .5;
-     let time = startingMinutes * 60;
-     let hr = time / 60;
+    
 
     // function myFunc() {
     //     let hours = Math.floor(hr / 60)
@@ -64,8 +64,12 @@ function Home() {
     // }
 
  
-    const [timer, setTimer] = React.useState("");
-  const [timerOn, setTimerOn] = React.useState(false);
+ 
+
+  let startingMinutes = timeGoal;
+  console.log(timeGoal)
+  let time = startingMinutes * 60;
+  let hr = time / 60;
 
   React.useEffect(() => {
     let interval = null;
@@ -73,11 +77,25 @@ function Home() {
     if (timerOn) {
 
       interval = setInterval(() => {
-    let hours = Math.floor(hr / 60)
-    let minutes = Math.floor(time / 60)
+          let hours;
+    //let hours = Math.floor(hr / 60)
+    // let minutes = Math.floor(time / 60)
+    let minutes = Math.floor(time/ 60)
+    if (minutes == 60){
+        hours = 1
+        minutes = 0
+      
+    } else if (minutes == 120){
+        hours = 2;
+        minutes = 0
+       
+    } else (
+        hours = 0
+    )
+        // Math.floor(time / 60)
     let seconds = time % 60;
-        setTimer(() => hours + ":" + minutes + ":" + seconds)
-        time --;
+        setTimer((prevTime) => hours + ":" + minutes + ":" + seconds)
+        time--;
       }, 1000);
     } else if (!timerOn) {
       clearInterval(interval);
@@ -102,9 +120,9 @@ function Home() {
                             setTimeGoal(event.target.value)
                         }>
                         <option name="30" value='0'>Select</option>
-                        <option name="30" value="0:30:0">30 minutes</option>
-                        <option name="60" value="1:0:0">1 hour</option>
-                        <option name="120" value="2:0:0">2 hours</option>
+                        <option name="30" value="30">30 minutes</option>
+                        <option name="60" value="60">1 hour</option>
+                        {/* <option name="120" value="60">2 hours</option> */}
                     </select>
 
 
@@ -121,8 +139,11 @@ function Home() {
                 <div className="col-sm-3 clock mt-1">
                     <GiAlarmClock />
                     <div className="row">
-                        <p className='timecaption'>Time:  {timeGoal? timeGoal : "0:0:0"}</p>
-                        <p><button className="btn timerbtn btn-primary">Start timer</button></p>
+                        <p className='timecaption'>Time:  {timer? timer : "0:0:0"}</p>
+                        <p><button className="btn timerbtn btn-primary"
+                        onClick={
+                            () => setTimerOn(true)}
+                        >Start timer</button></p>
                         </div>
                         <div className="row">
                         
@@ -132,15 +153,11 @@ function Home() {
             </div>
 
 
-            {/* <a href="http://www.instagram.com">
-        <button href="http://www.instagram.com" > Instagram </button>
-        </a> */}
-
-            {/* <a href="https://www.instagram.com" target="_blank"><button>Instagram</button></a> */}
-            {!timerOn && (
+     
+            {/* {!timerOn && (
           <button onClick={() => setTimerOn(true)}>Start</button>
-        )}
-            <p id="countdown" style={{color: "white"}}>just to see if working:{timer}</p>
+        )} */}
+            {/* <p id="countdown" style={{color: "white"}}>just to see if working:{timer}</p> */}
         </div>
     )
 
