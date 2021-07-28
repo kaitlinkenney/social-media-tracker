@@ -10,5 +10,8 @@ Navigate to the application through the deployed link below. Select how much tim
 
 ### Screenshot of application: 
 
+<img width="960" alt="socialmediatrackerscreenshot" src="https://user-images.githubusercontent.com/67657449/127219661-13844c70-d0ac-4856-81ec-9996108b4b5c.png">
+
 
 ### Link to deployed application: 
+https://enigmatic-lowlands-99725.herokuapp.com/
