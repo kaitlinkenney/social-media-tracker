@@ -20,38 +20,24 @@ function Home() {
 
 
     var myWindow;
-function openInsta() {
-    myWindow = window.open("https://www.instagram.com", "_blank", "width=500, height=600");
-    
-    // myWindow.alert("hi?")
-    // myWindow = function(){
-    //     alert("time to go outside bro")
-    // }
- //   window.alert("time to go outside bro")
-  }
+    function openInsta() {
+        myWindow = window.open("https://www.instagram.com", "_blank", "width=500, height=600");
+
+
+    }
 
 
 
-  React.useEffect(() => {
-  if (timeUp == true){
-     let newWindow = window.open("https://media.giphy.com/media/l2SpTIJLadonAqWkM/giphy.gif", "_blank", "width=1500, height=600")
-  }
- 
- }, )
-  
+    React.useEffect(() => {
+        if (timeUp == true) {
+            let newWindow = window.open("https://media.giphy.com/media/l2SpTIJLadonAqWkM/giphy.gif", "_blank", "width=1500, height=600")
+        }
+
+    })
 
 
 
-// let insta = "http://www.instagram.com"
 
-// function openInsta() {
-//     window.open(insta)
-
-// }
-   
-    // function openInsta(){
-    //     let inst= window.open('http://www.instagram.com')
-    // }
     function openFb() {
         myWindow = window.open("https://www.facebook.com", "_blank", "width=500, height=600");
     }
@@ -99,27 +85,39 @@ function openInsta() {
                 } else if (minutes > 60 && minutes < 120) {
                     hours = 1;
                     minutes = 59;
-                } 
+                } else if (minutes == 180){
+                    hours = 3;
+                    minutes = 0;
+                } else if (minutes > 120 && minutes < 180){
+                    hours = 2;
+                    minutes = 59;
+                } else if (minutes == 240){
+                    hours = 4;
+                    minutes = 0;
+                } else if (minutes > 180 && minutes < 240){
+                    hours = 3;
+                    minutes = 59;
+                }
                 let seconds = time % 60;
                 setTimer((prevTime) => hours + ":" + minutes + ":" + seconds)
                 time--;
             }, 1000);
-           
-        } 
+
+        }
         else if (!timerOn) {
             clearInterval(interval);
-          }
-      
-          return () => clearInterval(interval);
+        }
 
-   
+        return () => clearInterval(interval);
+
+
     }, [timerOn]);
 
     React.useEffect(() => {
-        if (timer == "0:0:0"){
+        if (timer == "0:0:0") {
             setTimerOn(false)
             setTimeUp(true)
-            
+
         }
     })
 
@@ -141,16 +139,18 @@ function openInsta() {
                             setTimeGoal(event.target.value)
                         }>
                         <option name="30" value='0'>Select</option>
-                        <option name="30" value='.05'>few secs</option>
+                        {/* <option name="30" value='.05'>few secs</option> */}
                         <option name="30" value="30">30 minutes</option>
                         <option name="60" value="60">1 hour</option>
                         <option name="120" value="120">2 hours</option>
+                        <option name="120" value="180">3 hours</option>
+                        <option name="120" value="240">4 hours</option>
+
                     </select>
 
 
 
-                    {/* <button
-                        onClick={openInsta}>Instagram</button> */}
+
                     <a className="instagram link" onClick={openInsta} ><SiInstagram style={{ height: 43, width: 35 }} /></a>
                     <a className="fb link" onClick={openFb}><GrFacebook style={{ height: 43, width: 35 }} /></a>
                     <a className="twitter link" onClick={openTwitter}><FaTwitter style={{ height: 43, width: 35 }} /></a>
@@ -168,9 +168,7 @@ function openInsta() {
                         >Start timer</button></p>
                     </div>
                     <div className="row">
-                    {/* <button 
-                  
-                    onClick={closeWin}>"Close the new window"</button> */}
+
 
                     </div>
                 </div>
